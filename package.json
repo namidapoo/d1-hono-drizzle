@@ -1,14 +1,22 @@
 {
-  "name": "d1-hono-drizzle",
-  "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
-  },
-  "dependencies": {
-    "hono": "^4.8.4"
-  },
-  "devDependencies": {
-    "wrangler": "^4.4.0"
-  }
+	"name": "d1-hono-drizzle",
+	"scripts": {
+		"prepare": "lefthook install",
+		"preinstall": "npx only-allow bun",
+		"dev": "wrangler dev",
+		"deploy": "wrangler deploy --minify",
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"lint:fix": "biome lint --write .",
+		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"hono": "^4.8.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.1.1",
+		"lefthook": "^1.12.2",
+		"wrangler": "^4.4.0"
+	}
 }
