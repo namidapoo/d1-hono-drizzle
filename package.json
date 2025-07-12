@@ -11,7 +11,10 @@
 		"lint:fix": "biome lint --write .",
 		"check": "biome check --write .",
 		"generate": "drizzle-kit generate",
-		"migrate": "wrangler d1 migrations apply d1-tutorial --local"
+		"migrate:local": "wrangler d1 migrations apply d1-tutorial --local",
+		"migrate:remote": "wrangler d1 migrations apply d1-tutorial --remote",
+		"seed:local": "wrangler d1 execute d1-tutorial --local --file=./db/seed.sql",
+		"seed:remote": "wrangler d1 execute d1-tutorial --remote --file=./db/seed.sql"
 	},
 	"dependencies": {
 		"drizzle-orm": "^0.44.2",
