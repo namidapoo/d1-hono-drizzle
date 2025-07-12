@@ -9,13 +9,17 @@
 		"format": "biome format --write .",
 		"lint": "biome lint .",
 		"lint:fix": "biome lint --write .",
-		"check": "biome check --write ."
+		"check": "biome check --write .",
+		"generate": "drizzle-kit generate",
+		"migrate": "wrangler d1 migrations apply d1-tutorial --local"
 	},
 	"dependencies": {
+		"drizzle-orm": "^0.44.2",
 		"hono": "^4.8.4"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.1",
+		"drizzle-kit": "^0.31.4",
 		"lefthook": "^1.12.2",
 		"wrangler": "^4.4.0"
 	}
