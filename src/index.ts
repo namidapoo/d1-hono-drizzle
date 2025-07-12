@@ -40,4 +40,18 @@ app.post("/todos", async (c) => {
 	}
 });
 
+app.delete("/todos/:id", async (c) => {
+	const id = parseInt(c.req.param("id"));
+	try {
+		const db = drizzle(c.env.DB);
+		const results = await db.delete(todos).where(eq(todos.id, id));
+		return c.json({
+			message: "Todo deleted successfully",
+			data: results,
+		}, 200);
+	} catch (e) {
+		return c.json({ err: e }, 500);
+	}
+});
+
 export default app;
