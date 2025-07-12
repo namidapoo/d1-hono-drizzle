@@ -54,4 +54,19 @@ app.delete("/todos/:id", async (c) => {
 	}
 });
 
+app.put("/todos/:id", async (c) => {
+	const id = parseInt(c.req.param("id"));
+	const { title, score, isDone } = await c.req.json<typeof todos.$inferInsert>();
+	try {
+		const db = drizzle(c.env.DB);
+		const results = await db.update(todos).set({ title, score, isDone }).where(eq(todos.id, id));
+		return c.json({
+			message: "Todo updated successfully",
+			data: results,
+		}, 200);
+	} catch (e) {
+		return c.json({ err: e }, 500);
+	}
+});
+
 export default app;
