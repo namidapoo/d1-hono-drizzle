@@ -26,4 +26,18 @@ app.get("/todos/:id", async (c) => {
 	}
 });
 
+app.post("/todos", async (c) => {
+	const todo = await c.req.json<typeof todos.$inferInsert>();
+	try {
+		const db = drizzle(c.env.DB);
+		const results = await db.insert(todos).values(todo);
+		return c.json({
+			message: "Todo created successfully",
+			data: results,
+		}, 201);
+	} catch (e) {
+		return c.json({ err: e }, 500);
+	}
+});
+
 export default app;
